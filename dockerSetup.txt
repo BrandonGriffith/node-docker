@@ -1,0 +1,18 @@
+sudo apt update && sudo apt upgrade -y
+sudo apt install docker.io -y
+sudo apt install docker-compose -y
+
+
+
+npm install nodemon --save-dev
+
+
+docker version
+docker build -t my-node-image .
+docker image ls
+docker run -p 3000:3000 -d --name my-node-app my-node-image
+docker ps
+docker rm my-node-app -f
+docker run -v C:\Users\brand\Documents\CodeDojo\Projects\node-docker\:/app -p 3000:3000 -d --name my-node-app my-node-image
+docker run -v C:\Users\brand\Documents\CodeDojo\Projects\node-docker\:/app -v /app/node_modules -p 3000:3000 -d --name my-node-app my-node-image
+docker run --read-only -v C:\Users\brand\Documents\CodeDojo\Projects\node-docker\:/app -v /app/node_modules -p 3000:3000 -d --name my-node-app my-node-image
