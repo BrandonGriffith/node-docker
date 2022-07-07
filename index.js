@@ -4,7 +4,7 @@ const port = process.env.PORT;
 
 
 app.get('/', (_req,res) => {
-    res.send("<h1>BMG, Hello My Friend!!!</h1>")
+    res.send("<h1>BMG, Hello My Friend!</h1>")
 });
 
 
