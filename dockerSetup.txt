@@ -14,5 +14,5 @@ docker run -v C:\Users\brand\Documents\CodeDojo\Projects\node-docker\:/app -p 30
 docker run -v C:\Users\brand\Documents\CodeDojo\Projects\node-docker\:/app -v /app/node_modules -p 3000:3000 -d --name my-node-app my-node-image
 docker run -v C:\Users\brand\Documents\CodeDojo\Projects\node-docker\:/app -v /app/node_modules --env-file ./.env  -p 3000:4000 -d --name my-node-app my-node-image
 docker rm my-node-app -fv
-docker-compose up
+docker-compose up -d
 docker-compose down -v
