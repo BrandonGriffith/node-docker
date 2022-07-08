@@ -1,8 +1,8 @@
-FROM node:16.15
+FROM node:16.14
 WORKDIR /app
-# COPY package.json .
-COPY . .
+COPY package.json .
 RUN npm install
+COPY . .
 # ENV PORT 4000
 # EXPOSE $PORT
 # CMD ["node", "index.js"]
