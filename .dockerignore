@@ -4,3 +4,4 @@ Dockerfile
 .git
 .gitignore
 dockerSetup.txt
+docker-compose.yml

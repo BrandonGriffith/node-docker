@@ -5,5 +5,5 @@ RUN npm install
 COPY . .
 # ENV PORT 4000
 # EXPOSE $PORT
-# CMD ["node", "index.js"]
+# CMD ["node", "./src/index.js"]
 CMD ["npm", "run", "dev"]
