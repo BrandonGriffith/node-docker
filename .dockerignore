@@ -1,7 +1,11 @@
 node_modules
 Dockerfile
+dockerSetup.txt
+docker-compose.yml
+docker-compose.prod.yml
+docker-compose.dev.yml
+docker-compose.backup.yml
 .dockerignore
 .git
 .gitignore
-dockerSetup.txt
-docker-compose.yml
+.env

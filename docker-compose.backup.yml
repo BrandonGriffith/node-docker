@@ -1,9 +1,15 @@
-version: '3.8'
+version: "3.8"
 services:
   my-node-app:
     build: .
     ports:
       - 3333:4000/tcp
+    volumes:
+      - ./src:/app/src:ro
+      # - .env:/app/.env:ro
+      # - /app/node_modules
+      # environment:
+      #   - PORT=3000
     env_file:
       - ./.env
   plex:

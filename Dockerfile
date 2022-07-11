@@ -6,4 +6,4 @@ COPY . .
 # ENV PORT 4000
 # EXPOSE $PORT
 # CMD ["node", "./src/index.js"]
-CMD ["npm", "run", "dev"]
+# CMD ["npm", "run", "dev"]
