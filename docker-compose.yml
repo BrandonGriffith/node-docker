@@ -7,9 +7,9 @@ services:
     volumes:
       - ./src:/app/src:ro
       - .env:/app/.env:ro
-      - /app/node_modules
-    # environment:
-    #   - PORT=3000
+      # - /app/node_modules
+      # environment:
+      #   - PORT=3000
     env_file:
       - ./.env
   plex:
