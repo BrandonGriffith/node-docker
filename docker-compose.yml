@@ -22,4 +22,4 @@ services:
       - 32414:32414/udp
     volumes:
       - Z:\plexConfig:/config
-      - Z:\Videos\VHS2\VHS-Finished:/videos:ro
+      - Z:\Videos\VHS2\VHS-Finished:/homeVideos:ro
