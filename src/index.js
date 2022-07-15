@@ -6,7 +6,7 @@ const port = process.env.EXPRESSPORT;
 
 const mongoUser = process.env.MONGO_INITDB_ROOT_USERNAME;
 const mongoPass = process.env.MONGO_INITDB_ROOT_PASSWORD;
-mongoose.connect(`mongodb://${mongoUser}:${mongoPass}@172.22.0.2:27017/?authSource=admin`)
+mongoose.connect(`mongodb://${mongoUser}:${mongoPass}@mongo:27017/?authSource=admin`)
 .then(()=>console.log("mongoDB connected"))
 .catch((e)=>console.log("mongoDB error " + e));
 
