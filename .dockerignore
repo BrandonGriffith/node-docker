@@ -9,3 +9,4 @@ docker-compose.backup.yml
 .git
 .gitignore
 .env
+mongo-db

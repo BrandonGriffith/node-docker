@@ -2,10 +2,21 @@ version: '3.8'
 services:
   my-node-app:
     build: .
+    restart: unless-stopped
     ports:
       - 3333:4000/tcp
     env_file:
       - ./.env
+
+  mongo:
+    image: mongo
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    volumes:
+      - ./mongo-db:/data/db
+      # - mongo-db:/data/db
+
   plex:
     container_name: plex
     image: plexinc/pms-docker
@@ -23,3 +34,6 @@ services:
     volumes:
       - Z:\plexConfig:/config
       - Z:\Videos\VHS2\VHS-Finished:/homeVideos:ro
+
+# volumes:
+#   mongo-db:
