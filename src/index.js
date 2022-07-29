@@ -6,11 +6,6 @@ const port = process.env.EXPRESSPORT;
 app.listen(port, ()=>console.log(`express is listening on port ${port}`));
 
 
-app.get('/', (_req,res) => {
-    res.send("<h1>BMG, Hello My Friend.</h1>")
-});
-
-
 const mongoose = require("mongoose");
 const mongoUser = process.env.MONGO_INITDB_ROOT_USERNAME;
 const mongoPass = process.env.MONGO_INITDB_ROOT_PASSWORD;
@@ -20,3 +15,8 @@ const connectToMongooseDB = () => {
     .catch((e)=>{console.log(e); setTimeout(connectToMongooseDB, 3000)});
 };
 connectToMongooseDB();
+
+
+const postRouter = require("./routes/postRoutes");
+app.get('/', (_req,res) => res.send("<h1>BMG, Hello My Friend!</h1>"));
+app.use("/posts", postRouter);
