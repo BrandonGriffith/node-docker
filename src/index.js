@@ -14,6 +14,9 @@ app.get('/', (_req,res) => {
 const mongoose = require("mongoose");
 const mongoUser = process.env.MONGO_INITDB_ROOT_USERNAME;
 const mongoPass = process.env.MONGO_INITDB_ROOT_PASSWORD;
-mongoose.connect(`mongodb://${mongoUser}:${mongoPass}@mongo:27017/?authSource=admin`)
-.then(()=>console.log("mongoDB connected"))
-.catch((e)=>console.log("mongoDB error " + e));
+const connectToMongooseDB = () => {
+    mongoose.connect(`mongodb://${mongoUser}:${mongoPass}@mongo:27017/?authSource=admin`)
+    .then(()=>console.log("mongoDB connected"))
+    .catch((e)=>{console.log(e); setTimeout(connectToMongooseDB, 3000)});
+};
+connectToMongooseDB();
