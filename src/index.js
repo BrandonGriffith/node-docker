@@ -19,4 +19,5 @@ connectToMongooseDB();
 
 const postRouter = require("./routes/postRoutes");
 app.get('/', (_req,res) => res.send("<h1>BMG, Hello My Friend!</h1>"));
-app.use("/posts", postRouter);
+app.use(express.json());
+app.use("/api/v1/posts", postRouter);
