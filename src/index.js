@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+app.use(express.json());
+app.get("/", (_req,res) => res.send("<h1>BMG, Hello My Friend!</h1>"));
 
 
 const port = process.env.EXPRESSPORT;
@@ -18,6 +20,8 @@ connectToMongooseDB();
 
 
 const postRouter = require("./routes/postRoutes");
-app.get('/', (_req,res) => res.send("<h1>BMG, Hello My Friend!</h1>"));
-app.use(express.json());
 app.use("/api/v1/posts", postRouter);
+
+
+const userRouter = require("./routes/userRoutes");
+app.use("/api/v1/users", userRouter);
