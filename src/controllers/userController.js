@@ -70,3 +70,31 @@ exports.deleteUser = async (req, res) => {
     }
     catch (e) { res.status(400).json({result:"fail", error: e}); console.log(e); };
 };
+exports.login = async (req, res) => {
+    try { 
+        const username = await req.body["username"];
+        const user = await User.findOne({username});
+        if (!user){
+            return res.status(400).json({
+                result: "fail",
+                message: "username not found",
+            });
+        };
+        const correctPass = await bcrypt.compare(req.body["password"], user.password);
+        if (!correctPass){
+            return res.status(400).json({
+                correctPass,
+                result: "fail",
+                message: "password is not correct",
+            });
+        };
+        res.status(200).json({
+            correctPass,
+            result: "success, you have logged in",
+            data: {
+                user,
+            },
+        });
+    }
+    catch (e) { res.status(400).json({result:"fail", error: e}); console.log(e); };
+};
