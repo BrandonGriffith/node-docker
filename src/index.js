@@ -4,15 +4,19 @@ app.use(express.json());
 app.get("/", (_req,res) => res.send("<h1>BMG, Hello My Friend!</h1>"));
 
 
+const bodyParser = require("body-parser");
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
+
 const session = require('express-session');
 const connectRedis = require('connect-redis');
 var RedisStore = connectRedis(session);
 const { createClient } = require("redis");
-const pubClient = createClient({ url: 'redis://redis:6379' });
-pubClient.connect();
-pubClient.on('connect', (_err) => console.log('Connected to redis successfully'));
+const pubClient = createClient({ legacyMode: true, url: 'redis://redis:6379' });
+// pubClient.connect();
+// pubClient.on('connect', (_err) => console.log('Connected to redis successfully'));
 app.use(session({
-    name: "bmg",
     store: new RedisStore({ client: pubClient }),
     secret: 'secret$%^134',
     resave: false,
@@ -20,7 +24,7 @@ app.use(session({
     cookie: {
         secure: false,
         httpOnly: false,
-        maxAge: 1000 * 60 * 10
+        maxAge: 30000
     },
     },
 ));

@@ -89,11 +89,15 @@ exports.login = async (req, res) => {
             });
         };
         console.log(req.session);
-        res.status(200).json({
+        let sess = req.session;
+        // sess.username = user;
+        console.log(sess);
+        res.status(201).json({
             correctPass,
             result: "success, you have logged in",
             data: {
                 user,
+                session: req.session,
             },
         });
     }
