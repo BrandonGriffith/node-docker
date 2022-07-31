@@ -8,10 +8,13 @@ exports.signUp = async (req, res) => {
             req.body["password"] = await bcrypt.hash(req.body["password"], 12);
         }
         const newUser = await User.create(req.body);
+        const sess = req.session;
+        sess.user = newUser;
         res.status(200).json({
             result: "success",
             data: {
                 user: newUser,
+                sess,
             },
         })
     }
