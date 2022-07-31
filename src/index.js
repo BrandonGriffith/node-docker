@@ -1,33 +1,42 @@
 const express = require("express");
 const app = express();
 app.use(express.json());
+app.enable("trust proxy");
 app.get("/", (_req,res) => res.send("<h1>BMG, Hello My Friend!</h1>"));
 
 
-const bodyParser = require("body-parser");
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+const postRouter = require("./routes/postRoutes");
+const userRouter = require("./routes/userRoutes");
 
 
-const session = require('express-session');
-const connectRedis = require('connect-redis');
-var RedisStore = connectRedis(session);
-const { createClient } = require("redis");
-const pubClient = createClient({ legacyMode: true, url: 'redis://redis:6379' });
-// pubClient.connect();
-// pubClient.on('connect', (_err) => console.log('Connected to redis successfully'));
-app.use(session({
-    store: new RedisStore({ client: pubClient }),
+const cors = require("cors");
+const corsOptions = {
+    origin: 'http://localhost:3333',
+    credentials: true,
+};
+app.use(cors(corsOptions));
+
+
+const session = require("express-session")
+let RedisStore = require("connect-redis")(session)
+const { createClient } = require("redis")
+let redisClient = createClient({ legacyMode: true, url: 'redis://redis:6379', })
+redisClient.connect().catch(console.error)  
+const mySession = session({
+    key: "user_id",
+    store: new RedisStore({ client: redisClient }),
     secret: 'secret$%^134',
     resave: false,
     saveUninitialized: false,
     cookie: {
+        expires: 60000,
         secure: false,
         httpOnly: false,
-        maxAge: 30000
+        maxAge: 30000,
     },
     },
-));
+);
+app.use(mySession);
 
 
 const port = process.env.EXPRESSPORT;
@@ -45,9 +54,6 @@ const connectToMongooseDB = () => {
 connectToMongooseDB();
 
 
-app.enable("trust proxy");
-const postRouter = require("./routes/postRoutes");
 app.use("/api/v1/posts", postRouter);
-const userRouter = require("./routes/userRoutes");
 app.use("/api/v1/users", userRouter);
 module.exports = app;
