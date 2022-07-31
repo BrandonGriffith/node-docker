@@ -88,6 +88,7 @@ exports.login = async (req, res) => {
                 message: "password is not correct",
             });
         };
+        console.log(req.session);
         res.status(200).json({
             correctPass,
             result: "success, you have logged in",
