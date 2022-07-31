@@ -88,14 +88,14 @@ exports.login = async (req, res) => {
                 message: "password is not correct",
             });
         };
-        console.log(req.session);
-        req.session.user = user;
+        const sess = req.session;
+        sess.user = user;
         res.status(201).json({
             correctPass,
             result: "success, you have logged in",
             data: {
                 user,
-                session: req.session,
+                sess,
             },
         });
     }

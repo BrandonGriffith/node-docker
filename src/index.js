@@ -20,13 +20,13 @@ app.use(cors(corsOptions));
 const session = require("express-session")
 let RedisStore = require("connect-redis")(session)
 const { createClient } = require("redis")
-let redisClient = createClient({ legacyMode: true, url: 'redis://redis:6379', })
+let redisClient = createClient({ legacyMode: true, url: process.env.REDIS_URL, })
 redisClient.connect().catch(console.error);
 redisClient.on('connect', (_err) => console.log('Connected to redis successfully'));
 const mySession = session({
     key: "sessionCookie",
     store: new RedisStore({ client: redisClient }),
-    secret: 'secret$%^134',
+    secret: process.env.REDIS_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {

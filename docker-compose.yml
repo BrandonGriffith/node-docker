@@ -33,8 +33,6 @@ services:
   redis:
     container_name: redis
     image: redis
-    ports:
-      - 6379:6379/tcp
     networks:
       - bmg
 
