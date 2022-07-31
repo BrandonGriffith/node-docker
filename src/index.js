@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 app.get("/", (_req,res) => res.send("<h1>BMG, Hello My Friend!</h1>"));
+
+
 const session = require('express-session');
 const connectRedis = require('connect-redis');
 var RedisStore = connectRedis(session);
@@ -23,9 +25,6 @@ app.use(session({
     },
 ));
 
-var bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 const port = process.env.EXPRESSPORT;
 app.listen(port, ()=>console.log(`express is listening on port ${port}`));
@@ -40,11 +39,6 @@ const connectToMongooseDB = () => {
     .catch((e)=>{console.log(e); setTimeout(connectToMongooseDB, 3000)});
 };
 connectToMongooseDB();
-
-
-
-
-
 
 
 app.enable("trust proxy");
