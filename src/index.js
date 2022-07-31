@@ -21,9 +21,10 @@ const session = require("express-session")
 let RedisStore = require("connect-redis")(session)
 const { createClient } = require("redis")
 let redisClient = createClient({ legacyMode: true, url: 'redis://redis:6379', })
-redisClient.connect().catch(console.error)  
+redisClient.connect().catch(console.error);
+redisClient.on('connect', (_err) => console.log('Connected to redis successfully'));
 const mySession = session({
-    key: "user_id",
+    key: "sessionCookie",
     store: new RedisStore({ client: redisClient }),
     secret: 'secret$%^134',
     resave: false,
