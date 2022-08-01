@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  my-node-app:
+  node-app:
     build: .
     ports:
       - 3333:4000/tcp
