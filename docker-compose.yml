@@ -42,8 +42,6 @@ services:
     container_name: nginx
     image: nginx:stable-alpine
     restart: unless-stopped
-    ports:
-      - 80:80/tcp
     networks:
       - bmg
     volumes:
