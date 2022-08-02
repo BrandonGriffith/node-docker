@@ -28,3 +28,4 @@ docker-compose -f .\docker-compose.yml -f .\docker-compose.dev.yml up -d -V --sc
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d -V --build --no-deps node-app
 docker image tag node-docker_node-app valenborne/node-app
 docker push valenborne/node-app
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml push node-app
