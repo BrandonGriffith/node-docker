@@ -6,7 +6,7 @@ app.enable("trust proxy");
 app.listen(port, ()=>console.log(`Express is listening on port ${port}`));
 
 
-const {auth} = require("./middleware/authMiddleware");
+// const {auth} = require("./middleware/authMiddleware");
 const postRouter = require("./routes/postRoutes");
 const userRouter = require("./routes/userRoutes");
 
@@ -53,7 +53,7 @@ connectToMongooseDB();
 
 
 // app.get("/", (_req,res) => res.send("<h1>BMG, Hello My Friend!</h1>"));
-app.route("/api/v1").get(auth, (_req,res) => res.send("<h1>BMG, Hello My Friend!</h1>"));
+app.route("/api/v1").get((_req,res) => res.send("<h1>BMG, Hello My Friend!</h1>"));
 app.use("/api/v1/posts", postRouter);
 app.use("/api/v1/users", userRouter);
 module.exports = app;
