@@ -35,3 +35,5 @@ docker-compose -f docker-compose.yml -f docker-compose.prod.yml pull node-app
 docker info
 docker swarm init
 ip add
+docker stack deploy -c docker-compose.yml -c docker-compose.prod.yml my-app
+docker node ls

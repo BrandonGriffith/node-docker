@@ -12,8 +12,8 @@ services:
     depends_on:
       - mongo
       - redis
-    networks:
-      - bmg
+    # networks:
+    #   - bmg
     links:
       - redis
 
@@ -26,8 +26,8 @@ services:
     volumes:
       - ./mongo-db:/data/db
       # - mongo-db:/data/db
-    networks:
-      - bmg
+      # networks:
+      #   - bmg
     links:
       - redis
 
@@ -35,15 +35,15 @@ services:
     container_name: redis
     image: redis
     restart: unless-stopped
-    networks:
-      - bmg
+    # networks:
+    #   - bmg
 
   nginx:
     container_name: nginx
     image: nginx:stable-alpine
     restart: unless-stopped
-    networks:
-      - bmg
+    # networks:
+    #   - bmg
     volumes:
       - ./src/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
   # plex:
@@ -66,6 +66,6 @@ services:
 
   # volumes:
   #   mongo-db:
-networks:
-  bmg:
-    external: true
+  # networks:
+  #   bmg:
+  #     external: true
