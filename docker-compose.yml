@@ -43,7 +43,7 @@ services:
     image: nginx:stable-alpine
     restart: unless-stopped
     ports:
-      - 3333:80/tcp
+      - 80:80/tcp
     networks:
       - bmg
     volumes:
