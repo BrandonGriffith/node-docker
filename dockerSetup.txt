@@ -31,3 +31,7 @@ docker image tag node-docker_node-app valenborne/node-app
 docker push valenborne/node-app
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml push node-app
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml pull node-app
+
+docker info
+docker swarm init
+ip add
