@@ -25,3 +25,6 @@ docker inspect node-docker-mongo-1
 docker network ls
 docker exec -it  node-docker-my-node-app-1 bash
 docker-compose -f .\docker-compose.yml -f .\docker-compose.dev.yml up -d -V --scale node-app=2
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d -V --build --no-deps node-app
+docker image tag node-docker_node-app valenborne/node-app
+docker push valenborne/node-app

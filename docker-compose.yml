@@ -3,6 +3,7 @@ services:
   node-app:
     # container_name: node-app
     build: .
+    image: valenborne/node-app
     restart: unless-stopped
     # ports:
     #   - 3333:4000/tcp
