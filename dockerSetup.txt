@@ -42,3 +42,5 @@ docker stack ls
 docker stack services my-app
 docker service ls
 docker node ls
+docker node inspect self --pretty
+docker swarm leave -f
